@@ -1,23 +1,55 @@
-## CSR & SSR
+# CSR & SSR
 
-### CSR
+## CSR(Client Side Rendering)
 
-- Client Side Rendering
 - SPA(Single page application)에서 사용하는 방식
+  - 현재 페이지를 동적으로 렌더링하여 소통하는 웹 어플리케이션
+  - 단일 페이지로 구성하여 필요한 부분만 동적으로 수정하여 사용
+
 - Client에서 JavaScript에 의해 View를 동적으로 생성
-  - 최초 접속 시 모든 파일을 가져오는 방식
-    - page 전환이 SSR 대비 빠름(이미 파일을 가져와서)
-    - 최초 접속 시 파일 가져오는 시간에 의해 로딩이 느리다
+  - 최초 요청시 HTML, CSS, JS 를 제외한 모든 리소스를 응답 받고 클라이언트에서 필요한 데이터만 요청해 JS로 DOM을 렌더링 하는 방식
+
+
+
+### 장점
+
+- page 전환이 SSR 대비 빠름(사용자 경험 향상)
+- 서버와 클라이언트 간 트래픽 감소
+  - 정적 리소스는 한번에 다운받고, 필요할때 데이터만 갱신
+
+
+
+
+### 단점
 
 - SEO(검색 엔진 최적화)에 불리
+  - 기존의 대부분의 검색 엔진에서 사용하는 크롤러 방식이  JavaScript를 지원하지 못하여 검색시 JavaScript에 의해 표현되는 부분이 빈 공간으로 인식되어 검색에 불리
+
+- SSR 대비 첫 렌더링이 느림
 
 
 
-### SSR
+## SSR(Server Side Rendering)
 
-- Server Side Rendering
 - MPA(Multi page application)에서 사용하는 방식
-- Page 전환할 때 마다 client가 server에 View요청을 하여 받아오는 방식
-  - page 전환이 CSR대비 느림(Page 전활 될 때 마다 가져오므로)
-  - page 요청이 빈번해 질수록 CSR 대비 server 부하가 커짐(같은 데이터를 반복해서 가져오는게 많아짐)
+- Page 전환할 때 마다 서버에서 클라이언트에게 보여줄 페이지를 모두 구성하여 전달하는 방식
 
+
+
+### 장점
+
+- 초기 구동 속도가 빠름
+
+
+
+### 단점
+
+- 모든 요청마다 새로운 페이지를 구성하여 전달
+
+  - 반복되는 새로고침
+
+  - 트래픽이 많아 서버의 부담이 클 수 있음
+
+- page 전환이 CSR대비 느림(Page 전환 될 때 마다 모든 정보를 새로 가져와서)
+
+- page 요청이 빈번해 질수록 CSR 대비 server 부하가 커짐(같은 데이터를 반복해서 가져오는게 많아짐)
